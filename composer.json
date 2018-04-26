@@ -1,0 +1,7 @@
+{
+    "name": "yannickholzenkamp/financial-briefing",
+    "license": "MIT",
+    "require": {
+        "slim/slim": "3.10.0"
+    }
+}
