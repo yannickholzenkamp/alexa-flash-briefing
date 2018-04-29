@@ -10,7 +10,7 @@ class AlbGetter {
     private $message;
 
     function __construct() {
-        $this->filecontent = json_decode(file_get_contents('app/data/alb/alb2018.json'), true);
+        $this->filecontent = json_decode(file_get_contents('app/data/json/alb-2018.json'), true);
     }
 
     function build() {
