@@ -46,7 +46,7 @@ class AlbGetter {
             case 1:
                 return $this->MESSAGE_STARTSTRING."$itemType morgen.";
             default:
-                return $this->MESSAGE_STARTSTRING."$itemType am $itemDayName";
+                return $this->MESSAGE_STARTSTRING."$itemType am $itemDayName.";
         }
     }
 
