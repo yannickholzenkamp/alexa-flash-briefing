@@ -1,5 +1,6 @@
 <?php
 
+header("Content-Type: application/json; charset=UTF-8");
 date_default_timezone_set("Europe/Berlin");
 setlocale (LC_ALL, 'de_DE');
 
