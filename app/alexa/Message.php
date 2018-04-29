@@ -36,7 +36,7 @@ class Message {
     private function generateDateTime() {
         $date = date('Y-m-d');
         $time = date('H:i:s');
-        return $date.'T'.$time.'0Z';
+        return $date.'T'.$time.'.0Z';
     }
 
 }
