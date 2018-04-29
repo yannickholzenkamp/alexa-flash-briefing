@@ -20,7 +20,7 @@ class AlbGetter {
 
         $this->message = new Message();
         $this->message->init("ALB");
-        $this->message->setTitleText("Abfallwirtschaft LBH");
+        $this->message->setTitleText("Abfallwirtschaft Abholung");
         $this->message->setMainText($this->getMainText($item));
     }
 
