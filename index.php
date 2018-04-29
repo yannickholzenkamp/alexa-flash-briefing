@@ -14,9 +14,9 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     $alb = new AlbGetter('app/data/alb/output.json');
     $alb->build();
 
-    $response->withHeader('Content-Type', 'application/json');
-    $response->write($alb->get());
-    return $response;
+    return $response->withStatus(200)
+    ->withHeader('Content-Type', 'application/json')
+    ->write($alb->get());
 });
 $app->run();
 
