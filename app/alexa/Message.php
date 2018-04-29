@@ -9,15 +9,11 @@ class Message {
 
     function init($aIdentifier) {
         $this->uid = date('Ymd').'_'.$aIdentifier;
-        $this->updateDate = date('Ymd_Hi');
+        $this->updateDate = $this->generateDateTime();
     }
 
     function setUid($aUid) {
         $this->uid = $aUid;
-    }
-
-    function setUpdateDate($aUpdateDate) {
-        $this->updateDate = $aUpdateDate;
     }
 
     function setTitleText($aTitleText) {
@@ -35,6 +31,12 @@ class Message {
             'titleText' => $this->titleText,
             'mainText' => $this->mainText
         );
+    }
+
+    private function generateDateTime() {
+        $date = date('Y-m-d');
+        $time = date('H:i:s');
+        return $date.'T'.$time.'0Z';
     }
 
 }
