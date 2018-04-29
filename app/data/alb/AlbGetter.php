@@ -5,6 +5,7 @@ require_once 'app/alexa/Message.php';
 class AlbGetter {
 
     private $MAX_IN_FUTURE = 604800;
+    private $MESSAGE_STARTSTRING = 'Abfallwirtschaft Abholung: ';
     private $filecontent;
     private $message;
 
@@ -43,9 +44,9 @@ class AlbGetter {
         $itemDayName = strftime('%A',$aItem['date']);
         switch ($itemDays) {
             case 1:
-                return "$itemType morgen.";
+                return $this->MESSAGE_STARTSTRING."$itemType morgen.";
             default:
-                return "$itemType am $itemDayName";
+                return $this->MESSAGE_STARTSTRING."$itemType am $itemDayName";
         }
     }
 
