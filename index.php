@@ -7,16 +7,12 @@ use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 
 require 'vendor/autoload.php';
+require 'requests.php';
 spl_autoload_register('autoloader');
 
 $app = new \Slim\App;
-$app->get('/', function (Request $request, Response $response, array $args) {
-    $alb = new Alb_Getter('app/data/alb/output.json');
-    $alb->build();
-
-    return $response->withStatus(200)
-        ->withHeader('Content-Type', 'application/json')
-        ->write($alb->get());
+$app->get('/', function(Request $request, Response $response, array $args) { 
+    Requests::root($request, $response, $args);
 });
 $app->run();
 
