@@ -1,6 +1,6 @@
 <?php
 
-class Message {
+class Alexa_Message {
 
     private $uid;
     private $updateDate;

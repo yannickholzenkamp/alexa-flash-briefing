@@ -1,8 +1,6 @@
 <?php
 
-require_once 'app/alexa/Message.php';
-
-class AlbGetter {
+class Alb_Getter extends Getter {
 
     private $MAX_IN_FUTURE = 604800;
     private $MESSAGE_STARTSTRING = 'Abfallwirtschaft Abholung: ';
@@ -19,7 +17,7 @@ class AlbGetter {
             return;
         }
 
-        $this->message = new Message();
+        $this->message = new Alexa_Message();
         $this->message->init("ALB");
         $this->message->setTitleText("Abfallwirtschaft Abholung");
         $this->message->setMainText($this->getMainText($item));
