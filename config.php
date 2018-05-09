@@ -2,8 +2,10 @@
 
 class Config {
 
-    function define() {
-
+    static function define() {
+        return array(
+            new Alb_Getter()
+        );
     }
 
 }

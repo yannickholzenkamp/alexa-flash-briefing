@@ -8,7 +8,7 @@ class Alb_Getter extends Getter {
     private $message;
 
     function __construct() {
-        $this->filecontent = json_decode(file_get_contents('app/data/json/alb-2018.json'), true);
+        $this->filecontent = json_decode(file_get_contents('app/data/json/alb.json'), true);
     }
 
     function build() {
@@ -24,7 +24,7 @@ class Alb_Getter extends Getter {
     }
 
     function get() {
-        return json_encode($this->message->get(), JSON_UNESCAPED_UNICODE);
+        return $this->message->get();
     }
 
     private function getNext() {
