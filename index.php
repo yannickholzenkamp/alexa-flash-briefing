@@ -7,7 +7,6 @@ use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 
 require 'vendor/autoload.php';
-require 'requests.php';
 spl_autoload_register('autoloader');
 
 $app = new \Slim\App;
