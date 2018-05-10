@@ -11,7 +11,7 @@ It is written in PHP and tested for version 7.1.x.
 
 ## Configuration
 
-This projects consists of different modules, of which each one usually has a **loader** and a **getter**. A **loader** will gain the necessary data (e.g. through external API calls) and cache the data in a JSON file. This loading process is run when the Alexa Andpoint is called, but can also be optimized using a cron job to decrease the loading time of the Alexa Endpoint.
+This projects consists of different modules, of which each one usually has a **loader** and a **getter**. A **loader** will gain the necessary data (e.g. through external API calls) and cache the data in a JSON file. This loading process is run when the Alexa Andpoint is called and the cached data is out of date. The process can also be run periodically via cron to keep the cached data up to date and therefore decrease the loading time of the Alexa API.
 A **getter** will be called on an Alexa API request and read the cached data from the JSON file.
 
 The loaders and getters are defined in the **config.php** file.
