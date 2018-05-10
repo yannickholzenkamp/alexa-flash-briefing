@@ -10,7 +10,7 @@ class Requests {
     static function root(Request $request, Response $response, array $args) {
         $messages = array();
 
-        foreach (Config::getter() as $getter) {
+        foreach (Config::define() as $getter) {
             $getter->build();
             array_push($messages, $getter->get());
         }
