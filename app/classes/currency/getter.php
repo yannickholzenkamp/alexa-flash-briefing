@@ -2,9 +2,6 @@
 
 class Currency_Getter extends Getter {
 
-    private $from;
-    private $to;
-
     function build() {
         if ($this->getData() == null) {
             return;
@@ -16,10 +13,10 @@ class Currency_Getter extends Getter {
     }
 
     private function getMainText() {
-        $f = $this->from;
-        $t = $this->to;
+        $from = $this->instance->getParams()['from'][1];
+        $to = $this->instance->getParams()['to'][1];
         $a = $this->getRate();
-        return "Der aktuelle Wechselkurs zwischen $f und $t beträgt $a.";
+        return "Der aktuelle Wechselkurs zwischen $from und $to beträgt $a.";
     }
 
     private function getRate() {
