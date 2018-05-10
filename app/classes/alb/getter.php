@@ -5,10 +5,6 @@ class Alb_Getter extends Getter {
     private $MAX_IN_FUTURE = 604800;
     private $MESSAGE_STARTSTRING = 'Abfallwirtschaft Abholung: ';
 
-    function __construct() {
-        $this->init('alb');
-    }
-
     function build() {
         $item = $this->getNext();
         if ($item == null) {

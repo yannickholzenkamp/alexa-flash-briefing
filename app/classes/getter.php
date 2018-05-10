@@ -2,15 +2,13 @@
 
 class Getter {
     
-    private $fileName;
+    protected $instance;
     private $data;
     private $message;
-    private $loader;
 
-    protected function init($fileName) {
+    protected function init($instance) {
+        $this->instance = $instance;
         $this->message = new Alexa_Message();
-        $this->setFileName($fileName);
-        $this->executeLoader();
         $this->getDataFromFile();
     }
 
@@ -28,24 +26,13 @@ class Getter {
         return $this->message;
     }
 
-    protected function setLoader($loader) {
-        $this->loader = $loader;
-    }
-
-    function executeLoader() {
-        if ($this->loader == null) {
-            return;
-        }
-
-        $this->loader->load();
-    }
-
-    private function setFileName($fn) {
+    private function getFileName() {
+        $fn = $this->instance->getFileName();
         $this->fileName = "app/data/json/$fn.json";
     }
 
     private function getDataFromFile() {
-        $file = json_decode(file_get_contents($this->fileName), true);
+        $file = json_decode(file_get_contents($this->getFileName()), true);
         $this->data = $file['data'];
     }
 

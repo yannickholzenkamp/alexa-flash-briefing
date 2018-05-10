@@ -2,15 +2,15 @@
 
 class Loader {
 
-    private $fileName;
+    protected $instance;
     private $data;
-    private $cachingTime = 0;
 
-    protected function init($fileName) {
-        $this->setFileName($fileName);
+    function init($instance) {
+        $this->instance = $instance;
+        $this->cachingTime = $instance->getCachingTime();
     }
 
-    protected function load() {}
+    function load() {}
 
     protected function setData($data) {
         $this->data = $data;
@@ -20,29 +20,26 @@ class Loader {
         return $this->data;
     }
 
-    protected function setCachingTime($cachingTime) {
-        $this->cachingTime = $cachingTime;
-    }
-
     protected function writeDataToFile() {
         $json = array(
             'updated' => time(),
             'data' => $this->data
         );
-        file_put_contents($this->fileName, json_encode($json));
+        file_put_contents($this->getFileName(), json_encode($json));
     }
 
     protected function isUpToDate() {
-        return $this->getUpdatedTime() > (time() - $this->cachingTime);
+        return $this->getUpdatedTime() > (time() - $this->instance->getCachingTime());
     }
 
     private function getUpdatedTime() {
-        $file = json_decode(file_get_contents($this->fileName), true);
+        $file = json_decode(file_get_contents($this->getFileName()), true);
         return $file['updated'];
     }
 
-    private function setFileName($fn) {
-        $this->fileName = "app/data/json/$fn.json";
+    private function getFileName() {
+        $fn = $this->instance->getFileName();
+        return "app/data/json/$fn.json";
     }
 
 }

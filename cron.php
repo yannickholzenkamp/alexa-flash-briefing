@@ -6,8 +6,11 @@ spl_autoload_register('autoloader');
 
 require 'config.php';
 
-foreach (Config::define() as $getter) {
-    $getter->executeLoader();
+foreach (Config::define() as $instance) {
+    if ($instance->getLoader() != null) {
+        $instance->getLoader()->init($instance);
+        $instance->getLoader()->load();
+    }
 }
 
 function autoloader($classname) {
