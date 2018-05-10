@@ -26,6 +26,6 @@ todo
 - **.travis.yml** Travis CI configuration file
 - **.after_success.sh** Continuous deployment script for Travis CI
 - **composer.json** Composer configuration
-- **config.php** App configuration, see **Configuration**
+- **config.php** App configuration, see https://github.com/yannickholzenkamp/alexa-flash-briefing#configuration
 - **cron.php** Cron endpoint, may be used from webserver to decrease API loading time
 - **index.php** Alexa Flash Briefing skill endpoint
