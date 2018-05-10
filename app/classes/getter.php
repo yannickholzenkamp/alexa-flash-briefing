@@ -32,6 +32,14 @@ class Getter {
         $this->loader = $loader;
     }
 
+    function executeLoader() {
+        if ($this->loader == null) {
+            return;
+        }
+
+        $this->loader->load();
+    }
+
     private function setFileName($fn) {
         $this->fileName = "app/data/json/$fn.json";
     }
@@ -39,14 +47,6 @@ class Getter {
     private function getDataFromFile() {
         $file = json_decode(file_get_contents($this->fileName), true);
         $this->data = $file['data'];
-    }
-
-    private function executeLoader() {
-        if ($this->loader == null) {
-            return;
-        }
-
-        $this->loader->load();
     }
 
 }
