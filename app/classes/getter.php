@@ -6,7 +6,7 @@ class Getter {
     private $data;
     private $message;
 
-    protected function init($instance) {
+    function init($instance) {
         $this->instance = $instance;
         $this->message = new Alexa_Message();
         $this->getDataFromFile();
@@ -28,7 +28,7 @@ class Getter {
 
     private function getFileName() {
         $fn = $this->instance->getFileName();
-        $this->fileName = "app/data/json/$fn.json";
+        return "app/data/json/$fn.json";
     }
 
     private function getDataFromFile() {

@@ -10,9 +10,14 @@ class Requests {
     static function root(Request $request, Response $response, array $args) {
         $messages = array();
 
-        foreach (Config::define() as $getter) {
-            $getter->build();
-            array_push($messages, $getter->get());
+        foreach (Config::define() as $instance) {
+            if ($instance->getLoader() != null) {
+                $instance->getLoader()->init($instance);
+                $instance->getLoader()->load();
+            }
+            $instance->getGetter()->init($instance);
+            $instance->getGetter()->build();
+            array_push($messages, $instance->getGetter()->get());
         }
 
         return $response->withStatus(200)

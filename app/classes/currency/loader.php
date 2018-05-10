@@ -17,9 +17,9 @@ class Currency_Loader extends Loader {
     }
 
     private function getApiCurString() {
-        $from = $this->instance->getParams()[0][0];
-        $to = $this->instance->getParams()[0][1];
-        return $this->from.'_'.$this->to;
+        $from = $this->instance->getParams()['from'][0];
+        $to = $this->instance->getParams()['to'][0];
+        return $from.'_'.$to;
     }
 
     private function transformData() {
