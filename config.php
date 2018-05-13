@@ -10,23 +10,23 @@ class Config {
     }
 
     static function alb() {
-        $alb = new Instance();
-        $alb->setGetter(new Alb_Getter());
-        $alb->setFileName('alb');
-        return $alb;
+        $instance = new Instance();
+        $instance->setGetter(new Alb_Getter());
+        $instance->setFileName('alb');
+        return $instance;
     }
 
     static function currency() {
-        $currency = new Instance();
-        $currency->setGetter(new Currency_Getter());
-        $currency->setLoader(new Currency_Loader());
-        $currency->setCachingTime(TimeSpan::Six_Hours);
-        $currency->setFileName('currency');
-        $currency->setParams(array(
+        $instance = new Instance();
+        $instance->setGetter(new Currency_Getter());
+        $instance->setLoader(new Currency_Loader());
+        $instance->setCachingTime(TimeSpan::Six_Hours);
+        $instance->setFileName('currency');
+        $instance->setParams(array(
             'from' => array('EUR', 'Euro'),
             'to' => array('CHF', 'Schweizer Franken')
         ));
-        return $currency;
+        return $instance;
     }
 
 }

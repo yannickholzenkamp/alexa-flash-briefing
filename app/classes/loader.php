@@ -33,6 +33,9 @@ class Loader {
     }
 
     private function getUpdatedTime() {
+        if (!file_exists($this->getFileName())) {
+            return 0;
+        }
         $file = json_decode(file_get_contents($this->getFileName()), true);
         return $file['updated'];
     }
