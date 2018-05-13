@@ -20,7 +20,7 @@ class Currency_Getter extends Getter {
     }
 
     private function getRate() {
-        return str_replace('.',',',round($this->getData(), 3));
+        return str_replace('.',',',round($this->getData(), 2));
     }
 
 }
