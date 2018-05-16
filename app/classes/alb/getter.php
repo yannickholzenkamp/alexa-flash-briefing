@@ -6,14 +6,14 @@ class Alb_Getter extends Getter {
     private $MESSAGE_STARTSTRING = 'Abfallwirtschaft Abholung: ';
 
     function build() {
-        $item = $this->getNext();
-        if ($item == null) {
+        $items = $this->getNext();
+        if (count($items) < 1) {
             return;
         }
 
         $this->getMessage()->init("ALB");
         $this->getMessage()->setTitleText("Abfallwirtschaft Abholung");
-        $this->getMessage()->setMainText($this->getMainText($item));
+        $this->getMessage()->setMainText($this->getMainText($items));
     }
 
     function get() {
@@ -21,24 +21,33 @@ class Alb_Getter extends Getter {
     }
 
     private function getNext() {
+        $next = array();
         foreach ($this->getData() as $item) {
             if($item['date'] > time() && $item['date'] < time() + TimeSpan::One_Week) {
-                return $item;
+                array_push($next, $this->getItemText($item));
             }
         }
-        return null;
+        return $next;
     }
 
-    private function getMainText($aItem) {
+    private function getItemText($aItem) {
         $itemType = $aItem['type'];
         $itemDays = ceil(($aItem['date'] - time()) / 86400);
         $itemDayName = strftime('%A',$aItem['date']);
         switch ($itemDays) {
             case 1:
-                return $this->MESSAGE_STARTSTRING."$itemType morgen.";
+                return "$itemType morgen. ";
             default:
-                return $this->MESSAGE_STARTSTRING."$itemType am $itemDayName.";
+                return "$itemType am $itemDayName. ";
         }
+    }
+
+    private function getMainText($aItems) {
+        $text = $this->MESSAGE_STARTSTRING;
+        foreach ($aItems as $item) {
+            $text .= $item;
+        }
+        return $text;
     }
 
 }
