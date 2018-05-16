@@ -4,30 +4,25 @@ class Alb_Getter extends Getter {
 
     private $MAX_IN_FUTURE = 604800;
     private $MESSAGE_STARTSTRING = 'Abfallwirtschaft Abholung: ';
+    private $items = array();
 
     function build() {
-        $items = $this->getNext();
-        if (count($items) < 1) {
+        $this->getNext();
+        if (count($this->items) < 1) {
             return;
         }
 
-        $this->getMessage()->init("ALB");
-        $this->getMessage()->setTitleText("Abfallwirtschaft Abholung");
-        $this->getMessage()->setMainText($this->getMainText($items));
-    }
-
-    function get() {
-        return $this->getMessage()->get();
+        $this->getMessage()->init($this->getInstance()->getUid());
+        $this->getMessage()->setTitleText($this->getInstance()->getTitle());
+        $this->getMessage()->setMainText($this->getMainText());
     }
 
     private function getNext() {
-        $next = array();
         foreach ($this->getData() as $item) {
             if($item['date'] > time() && $item['date'] < time() + TimeSpan::One_Week) {
-                array_push($next, $this->getItemText($item));
+                array_push($this->items, $this->getItemText($item));
             }
         }
-        return $next;
     }
 
     private function getItemText($aItem) {
@@ -42,9 +37,9 @@ class Alb_Getter extends Getter {
         }
     }
 
-    private function getMainText($aItems) {
+    protected function getMainText() {
         $text = $this->MESSAGE_STARTSTRING;
-        foreach ($aItems as $item) {
+        foreach ($this->items as $item) {
             $text .= $item;
         }
         return $text;

@@ -4,8 +4,9 @@ class Instance {
 
     private $getter;
     private $loader;
+    private $uid;
+    private $title;
     private $cachingTime;
-    private $fileName;
     private $params;
 
     function setGetter($getter) {
@@ -16,12 +17,16 @@ class Instance {
         $this->loader = $loader;
     }
 
-    function setCachingTime($cachingTime) {
-        $this->cachingTime = $cachingTime;
+    function setUid($uid) {
+        $this->uid = $uid;
     }
 
-    function setFileName($fileName) {
-        $this->fileName = $fileName;
+    function setTitle($title) {
+        $this->title = $title;
+    }
+
+    function setCachingTime($cachingTime) {
+        $this->cachingTime = $cachingTime;
     }
 
     function setParams($params) {
@@ -36,12 +41,20 @@ class Instance {
         return $this->loader;
     }
 
-    function getCachingTime() {
-        return $this->cachingTime;
+    function getUid() {
+        return $this->uid;
     }
 
-    function getFileName() {
-        return $this->fileName;
+    function getFilename() {
+        return $this->uid;
+    }
+
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getCachingTime() {
+        return $this->cachingTime;
     }
 
     function getParams() {

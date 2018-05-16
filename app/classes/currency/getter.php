@@ -2,19 +2,9 @@
 
 class Currency_Getter extends Getter {
 
-    function build() {
-        if ($this->getData() == null) {
-            return;
-        }
-
-        $this->getMessage()->init("CUR");
-        $this->getMessage()->setTitleText("Wechselkurs");
-        $this->getMessage()->setMainText($this->getMainText());
-    }
-
-    private function getMainText() {
-        $from = $this->instance->getParams()['from'][1];
-        $to = $this->instance->getParams()['to'][1];
+    protected function getMainText() {
+        $from = $this->getInstance()->getParams()['from'][1];
+        $to = $this->getInstance()->getParams()['to'][1];
         $a = $this->getRate();
         return "Der aktuelle Wechselkurs zwischen $from und $to beträgt $a.";
     }

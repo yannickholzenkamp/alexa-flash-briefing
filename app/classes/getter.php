@@ -8,13 +8,23 @@ class Getter {
 
     function init($instance) {
         $this->instance = $instance;
-        $this->message = new Alexa_Message();
+        $this->message = new Alexa_Message();  
         $this->getDataFromFile();
     }
 
-    protected function build() {}
+    function build() {
+        if ($this->getData() == null) {
+            return;
+        }
 
-        public function get() {
+        $this->getMessage()->init($this->getInstance()->getUid());
+        $this->getMessage()->setTitleText($this->getInstance()->getTitle());
+        $this->getMessage()->setMainText($this->getMainText());
+    }
+
+    protected function getMainText() {}
+
+    public function get() {
         return $this->message->get();
     }
 
@@ -26,8 +36,12 @@ class Getter {
         return $this->message;
     }
 
+    protected function getInstance() {
+        return $this->instance;
+    }
+
     private function getFileName() {
-        $fn = $this->instance->getFileName();
+        $fn = $this->getInstance()->getFileName();
         return "app/data/json/$fn.json";
     }
 
