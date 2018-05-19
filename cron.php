@@ -5,6 +5,7 @@ setlocale(LC_ALL, 'de_DE');
 spl_autoload_register('autoloader');
 
 require 'config.php';
+require 'vendor/autoload.php';
 
 foreach (Config::define() as $instance) {
     if ($instance->getLoader() != null) {
