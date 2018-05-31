@@ -6,6 +6,7 @@ class Instance {
     private $loader;
     private $uid;
     private $title;
+    private $message;
     private $cachingTime;
     private $params;
 
@@ -23,6 +24,10 @@ class Instance {
 
     function setTitle($title) {
         $this->title = $title;
+    }
+
+    function setMessage($message) {
+        $this->message = $message;
     }
 
     function setCachingTime($cachingTime) {
@@ -51,6 +56,10 @@ class Instance {
 
     function getTitle() {
         return $this->title;
+    }
+
+    function getMessage() {
+        return $this->message;
     }
 
     function getCachingTime() {

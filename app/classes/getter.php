@@ -3,7 +3,7 @@
 class Getter {
     
     protected $instance;
-    private $data;
+    protected $data;
     private $message;
 
     function init($instance) {
