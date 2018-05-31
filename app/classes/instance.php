@@ -10,6 +10,10 @@ class Instance {
     private $cachingTime;
     private $params;
 
+    function __construct($uid) {
+        $this->setUid($uid);
+    }
+
     function setGetter($getter) {
         $this->getter = $getter;
     }
