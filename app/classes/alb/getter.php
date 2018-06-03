@@ -26,7 +26,7 @@ class Alb_Getter extends Getter {
     }
 
     private function getItemText($aItem) {
-        $itemType = $aItem['type'];
+        $itemType = $aItem['summary'];
         $itemDays = ceil(($aItem['date'] - time()) / 86400);
         $itemDayName = strftime('%A',$aItem['date']);
         switch ($itemDays) {

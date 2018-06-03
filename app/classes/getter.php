@@ -13,16 +13,19 @@ class Getter {
     }
 
     function build() {
-        if ($this->getData() == null) {
-            return;
-        }
-
         $this->getMessage()->init($this->getInstance()->getUid());
         $this->getMessage()->setTitleText($this->getInstance()->getTitle());
-        $this->getMessage()->setMainText($this->getMainText());
+        $this->getMessage()->setMainText($this->getMainTextInternal());
     }
 
     protected function getMainText() {}
+
+    protected function getMainTextInternal() {
+        if ($this->getData() == null) {
+            return '';
+        }
+        return $this->getMainText();
+    }
 
     public function get() {
         return $this->message->get();
