@@ -22,7 +22,7 @@ class Requests {
 
         return $response->withStatus(200)
             ->withHeader('Content-Type', 'application/json')
-            ->write(json_encode($messages, JSON_UNESCAPED_UNICODE));
+            ->write(json_encode($messages));
     }
 
 }
