@@ -15,7 +15,7 @@ class Getter {
     function build() {
         $this->getMessage()->init(utf8_encode($this->getInstance()->getUid()));
         $this->getMessage()->setTitleText(utf8_encode($this->getInstance()->getTitle()));
-        $this->getMessage()->setMainText($this->getMainTextInternal());
+        $this->getMessage()->setMainText(utf8_encode($this->getMainTextInternal()));
     }
 
     protected function getMainText() {}
