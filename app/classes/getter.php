@@ -13,9 +13,9 @@ class Getter {
     }
 
     function build() {
-        $this->getMessage()->init($this->getInstance()->getUid());
-        $this->getMessage()->setTitleText($this->getInstance()->getTitle());
-        $this->getMessage()->setMainText($this->getMainTextInternal());
+        $this->getMessage()->init($this->convertText($this->getInstance()->getUid()));
+        $this->getMessage()->setTitleText($this->convertText($this->getInstance()->getTitle()));
+        $this->getMessage()->setMainText($this->convertText($this->getMainTextInternal()));
     }
 
     protected function getMainText() {}
@@ -51,6 +51,10 @@ class Getter {
     private function getDataFromFile() {
         $file = json_decode(file_get_contents($this->getFileName()), true);
         $this->data = $file['data'];
+    }
+
+    private function convertText($text) {
+        return iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
     }
 
 }
